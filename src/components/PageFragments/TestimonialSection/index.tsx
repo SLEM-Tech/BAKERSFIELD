@@ -1,142 +1,69 @@
-// components/Testimonial/TestimonialSection.
+// components/Testimonial.tsx
 
-"use client"
-import React, { useEffect, useRef, useState } from "react";
-import img1 from "@public/images/testimonial-section/image1.png";
-import img2 from "@public/images/testimonial-section/image2.png";
-import img3 from "@public/images/testimonial-section/image3.png";
-import img4 from "@public/images/testimonial-section/image4.png";
+import img from "@public/images/testimonial-section/test-img1.png"; 
 import TestimonialCard from "../TestimonialCard";
-import { Carousel } from "react-responsive-carousel";
-import { StaticImageData } from "@node_modules/next/image";
 
-export type TestimonyCard = {
-  id: number;
-  name: string;
-  quote: string;
-  image: string | StaticImageData;
-};
-
-const testimony: TestimonyCard[] = [
+const testimonials = [
   {
-    id: 1,
-    name: "Olivia Rhye",
-    quote:
-      "Every book you pick up has its own lesson or lessons, and quite often the bad books have more to teach.",
-    image: img1,
+    name: "Anna Smith",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
+    rating: 3,
+    image: img,
+    bgColor: "bg-[#F4F7D6]",
   },
   {
-    id: 1,
-    name: "John Doe",
-    quote:
-      "Every book you pick up has its own lesson or lessons, and quite often the bad books have more to teach.",
-    image: img2,
+    name: "Sara Jacob",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
+    rating: 2,
+    image: img,
+    bgColor: "bg-[#EAEAFE]",
   },
   {
-    id: 1,
-    name: "Candice Craig",
-    quote:
-      "Every book you pick up has its own lesson or lessons, and quite often the bad books have more to teach.",
-    image: img3,
+    name: "Lara Zoe",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
+    rating: 3,
+    image: img,
+    bgColor: "bg-[#FFF2E8]",
   },
   {
-    id: 1,
-    name: "Danny Baker",
-    quote:
-      "Every book you pick up has its own lesson or lessons, and quite often the bad books have more to teach.",
-    image: img4,
+    name: "Franklin Jackson",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
+    rating: 1,
+    image: img,
+    bgColor: "bg-[#FFF1EA]",
+  },
+  {
+    name: "Jane Klien",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
+    rating: 4,
+    image: img,
+    bgColor: "bg-[#F4F7D6]",
   },
 ];
 
-const Loader = () => (
-  <>
-    {[...Array(6)].map((_, idx) => (
-      <div
-        key={idx}
-        className="min-w-[240px] sm:min-w-[280px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0"
-      />
-    ))}
-  </>
-);
-
-const TestimonialSection = () => {
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const carouselRef = useRef<Carousel | null>(null);
-
-  const changeSlide = () => {
-    setCurrentSlide((prevSlide) => {
-      const nextIndex = (prevSlide + 1) % 6; // Cycle through slides
-      carouselRef.current?.moveTo(nextIndex);
-      return nextIndex;
-    });
-  };
-
-  const resetInterval = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    intervalRef.current = setInterval(() => {
-      changeSlide();
-    }, 15000);
-  };
-
-  useEffect(() => {
-    resetInterval();
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
+const Testimonial = () => {
   return (
-    <section className="py-20 bg-[#FDFDFD] text-center">
-      <div className="mb-12">
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#031B4E] flex items-center justify-center gap-2">
-          <span className="text-pink-600 text-3xl font-bold">◠</span>
-          What Our Readers Says
-        </h2>
-        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-xl mx-auto">
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco boris nisi
-          ut aliquip ex ea commodo.
-        </p>
-      </div>
+    <section className="py-20 px-6 text-center bg-white">
+      <h5 className="uppercase tracking-widest text-sm mb-3 text-gray-600">
+        Testimonials
+      </h5>
+      <h2 className="text-3xl md:text-4xl font-medium mb-16">
+        Real people, real results
+      </h2>
 
-      <div className="lg:mt-[70px]">
-        <Carousel
-          ref={carouselRef}
-          showArrows={true}
-          showThumbs={false}
-          showStatus={false}
-          infiniteLoop={false}
-          showIndicators={false}
-          autoPlay={false}
-          selectedItem={currentSlide}
-          onChange={(index) => {
-            setCurrentSlide(index);
-            resetInterval();
-          }}
-          interval={15000}
-        >
-          {testimony.map((test: TestimonyCard) => (
-            <TestimonialCard
-              key={test.id}
-              image={test.image}
-              quote={test.quote}
-              name={test.name}
-            />
-          ))}
-        </Carousel>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+        {/* Top row */}
+        <TestimonialCard {...testimonials[0]} />
+        <TestimonialCard {...testimonials[1]} />
+        <TestimonialCard {...testimonials[2]} />
       </div>
-
-      <div className="flex justify-center mt-8 space-x-2">
-        <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-      </div>
+        {/* Bottom row */}
+        <div className="flex xs:flex-col md:flex-row justify-center gap-10 items-center w-full mt-8">
+          <TestimonialCard {...testimonials[3]} />
+          <TestimonialCard {...testimonials[4]} />
+        </div>
     </section>
   );
 };
 
-export default TestimonialSection;
+export default Testimonial;

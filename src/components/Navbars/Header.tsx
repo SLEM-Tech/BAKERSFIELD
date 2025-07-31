@@ -49,6 +49,9 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { headerMenu } from "@constants";
 import { BsCart4 } from "react-icons/bs";
 import { MdOutlinePersonOutline } from "react-icons/md";
+import CurrencyDropdown from "./CurrencyDropdown";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import UserMenu from "./UserMenu";
 
 const Header = () => {
   const pathname = usePathname();
@@ -117,28 +120,6 @@ const Header = () => {
       0
     );
   };
-
-  const mobileDropDownLinks = [
-    {
-      id: 1,
-      href: "/user/dashboard",
-      icon: <bi.BiUser className="text-base" />,
-      label: "My Account",
-    },
-    {
-      id: 2,
-      href: "/user/my-orders",
-      icon: <FaCartArrowDown className="text-base" />,
-      label: "Orders",
-    },
-
-    {
-      id: 3,
-      href: "/cart",
-      icon: <FiShoppingCart className="text-base" />,
-      label: "Cart",
-    },
-  ];
 
   const handleisMobileNavClick = () => {
     setIsUserClick(!isUserClick);
@@ -247,24 +228,28 @@ const Header = () => {
     <>
       {/* Desktop */}
 
-      <header className="xs:px-2 flex items-center justify-between h-30 py-4 md:px-20 w-full z-50 fixed top-0 bg-white transition drop-shadow-md">
-        {/* header logo */}
-        <div className="">
-          <Link href={"/"} className="text-4xl text-[#D62E55]">
-            Logo
-          </Link>
+      <header className="flex flex-col h-25 w-full z-50 fixed top-0 bg-white transition drop-shadow-md">
+        {/* header row 1 */}
+        <div
+          style={{ wordSpacing: "5px" }}
+          className="bg-[#ecf494] text-center text-sm py-3 text-"
+        >
+          Rated 4.8-stars across 20k+ reviews
         </div>
 
-        {/* menu options */}
-        <div className="xs:hidden lg:flex items-center justify-center gap-5  ">
-          <div className="flex items-center justify-between gap-5">
-            {headerMenu.map((menu, i) => (
-              <Link key={menu.id} href={menu.path}>
-                {menu.label}
-              </Link>
-            ))}
+        {/* header row 2 */}
+        <div className="flex items-center justify-between xs:gap-2 lg:gap-0 xs:mx-8 lg:mx-20">
+          {/* header logo and hanburger menu */}
+          <div className="flex items-center justify-between gap-3">
+            <Link href={"/"} className="xs:text-lg lg:text-4xl  text-gray-800">
+              Logo
+            </Link>
+            <div className="" onClick={toggleDrawer}>
+              <ImMenu color="#343620" />
+            </div>
           </div>
-          {/* search */}
+
+          {/* search input */}
           <div className="flex h-10 col-span-2">
             <SearchInput
               placeholder="...Search"
@@ -274,51 +259,29 @@ const Header = () => {
               isLoading={false}
             />
           </div>
-        </div>
 
-        <div className="flex items-center justify-center xs:gap-1 md:gap-2">
-          {/* hamburger menu for mobile */}
-          <div className="lg:hidden slg:hidden" onClick={toggleDrawer}>
-            <ImMenu color="#D62E55" />
+          {/* currency dropdown */}
+          <div className="flex items-center xs:justify-center md:justify-between xs:gap-0 md:gap-4">
+            <div className="xs:hidden md:flex">
+              <CurrencyDropdown />
+            </div>
+
+            {/* shoping cart and usermenu */}
+            <div className="flex items-center md:justify-between">
+              <div className="flex items-center justify-between gap-4 py-4">
+                <Link href={""} className="relative flex items-center">
+                  <HiOutlineShoppingBag size={30} />
+                  <span className="absolute top-0 right-[-6px] bg-white">
+                    0
+                  </span>
+                </Link>
+
+                <div className="flex items-center">
+                  <UserMenu />
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* Login and signup  */}
-
-          {isLoggedIn ? (
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex items-center justify-center">
-                <MdOutlinePersonOutline color="#D62E55" size={22} />
-                <p className="text-sm text-red-500">John</p>
-              </div>
-              <div className="flex items-center justify-center">
-                <BsCart4 color="#D62E55" size={20} />
-                <p className="text-sm text-red-500">Cart</p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Link
-                href="/user/login"
-                className={`xs:px-2 sm:text-xs sm:px-4 xs:py-1 px-6 lg:py-2 rounded-lg font-normal ${
-                  isActive("/user/login")
-                    ? "bg-transparent text-[#D62E55]"
-                    : "text-gray-600 bg-transparent"
-                }`}
-              >
-                Login
-              </Link>
-              <Link
-                href="/user/register"
-                className={` xs:px-2 sm:text-xs sm:px-4 xs:py-1 px-4 lg:py-2 rounded-lg font-normal ${
-                  isActive("/user/register")
-                    ? "text-[#D62E55] bg-transparent"
-                    : "bg-[#D62E55] text-white"
-                }`}
-              >
-                Sign up
-              </Link>
-            </div>
-          )}
         </div>
       </header>
 
@@ -343,12 +306,12 @@ const Header = () => {
           <Link
             href={"/"}
             className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-black-600 font-semibold line-clamp-1 ${
-              pathname === "/" && "text-[#D62E55]"
+              pathname === "/" && "text-gray-900"
             }`}
           >
             Home
             <span
-              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-[#D62E55] transition-transform duration-500 ${
+              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-gray-600 transition-transform duration-500 ${
                 pathname === "/" ? "scale-x-100" : "scale-x-0"
               } transform origin-bottom-left group-hover:scale-x-100`}
             />
@@ -356,25 +319,12 @@ const Header = () => {
           <Link
             href={"/"}
             className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-black-600 font-semibold line-clamp-1 ${
-              pathname === "/" && "text-[#D62E55]"
-            }`}
-          >
-            Browse
-            <span
-              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-[#D62E55] transition-transform duration-500 ${
-                pathname === "/browse" ? "scale-x-100" : "scale-x-0"
-              } transform origin-bottom-left group-hover:scale-x-100`}
-            />
-          </Link>
-          <Link
-            href={"/"}
-            className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-black-600 font-semibold line-clamp-1 ${
-              pathname === "/" && "text-[#D62E55]"
+              pathname === "/" && "text-gray-900"
             }`}
           >
             About
             <span
-              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-[#D62E55] transition-transform duration-500 ${
+              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-gray-600 transition-transform duration-500 ${
                 pathname === "/about" ? "scale-x-100" : "scale-x-0"
               } transform origin-bottom-left group-hover:scale-x-100`}
             />
@@ -388,20 +338,20 @@ const Header = () => {
                     open && "border-b-[3px] border-#D62E55"
                   }`}
                 >
-                  <h2 className="text-base xl:text-xl capitalize text-[#D62E55] font-semibold line-clamp-1">
+                  <h2 className="text-base xl:text-xl capitalize text-gray-900 font-semibold line-clamp-1">
                     Category
                   </h2>
 
                   {open ? (
                     <IoIosArrowUp
-                      className={`text-lg group-hover:text-[#D62E55] ${
-                        open ? "text-[#D62E55]" : "text-black-600"
+                      className={`text-lg group-hover:text-gray-600 ${
+                        open ? "text-gray-600" : "text-black-600"
                       }`}
                     />
                   ) : (
                     <IoIosArrowDown
-                      className={`text-lg group-hover:text-[#D62E55] ${
-                        open ? "text-[#D62E55]" : "text-black-600"
+                      className={`text-lg group-hover:text-gray-600 ${
+                        open ? "text-gray-600" : "text-black-600"
                       }`}
                     />
                   )}
@@ -419,11 +369,11 @@ const Header = () => {
                     <Link
                       href="/category"
                       className={`flex items-center gap-2 group cursor-pointer text-sm xl:text-base ${
-                        pathname === `/category` ? "text-[#D62E55]" : ""
-                      } hover:text-[#D62E55] transition`}
+                        pathname === `/category` ? "text-gray-600" : ""
+                      } hover:text-gray-600 transition`}
                     >
                       <h4
-                        className={`cursor-pointer group-hover:text-[#D62E55] font-medium transition`}
+                        className={`cursor-pointer group-hover:text-gray-600 font-medium transition`}
                         dangerouslySetInnerHTML={{ __html: "All" }}
                       />
                     </Link>
@@ -448,12 +398,12 @@ const Header = () => {
                                 "-" +
                                 item?.id
                               }`
-                                ? "text-[#D62E55]"
+                                ? "text-gray-600"
                                 : "text-black-600"
-                            } hover:text-[#D62E55] transition`}
+                            } hover:text-gray-600 transition`}
                           >
                             <h4
-                              className={`cursor-pointer group-hover:text-[#D62E55] font-medium transition`}
+                              className={`cursor-pointer group-hover:text-gray-600 font-medium transition`}
                               dangerouslySetInnerHTML={{ __html: item?.name }}
                             />
                           </Link>
@@ -467,13 +417,13 @@ const Header = () => {
 
           <Link
             href={"/faq"}
-            className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-[#D62E55] font-semibold line-clamp-1 ${
-              pathname === "/faq" && "text-[#D62E55]"
+            className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-gray-900 font-semibold line-clamp-1 ${
+              pathname === "/faq" && "text-gray-900"
             }`}
           >
             Faqs
             <span
-              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] bg-[#D62E55] transition-transform duration-500 ${
+              className={`absolute left-0 bottom-0 h-[3px] top-10 w-[70%] text-gray-500 transition-transform duration-500 ${
                 pathname === "/faq" ? "scale-x-100" : "scale-x-0"
               } transform origin-bottom-left group-hover:scale-x-100`}
             />

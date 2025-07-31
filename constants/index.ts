@@ -50,7 +50,7 @@ export const generateUniqueReference = () => {
 	// return `Jolly_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 };
 
-export const CompanyName = "Michgan Instrument Ltd";
+export const CompanyName = "Bakersfield Elementary Services Ltd";
 
 export const splitText = (text: string) => {
 	return text.split(/(?=[A-Z])/).join(" ");

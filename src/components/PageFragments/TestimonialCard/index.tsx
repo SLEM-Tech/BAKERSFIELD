@@ -1,41 +1,48 @@
-// components/Testimonial/TestimonialCard.tsx
-import React from "react";
+// components/TestimonialCard.tsx
 import Image, { StaticImageData } from "next/image";
-import { FaStar } from "react-icons/fa";
+import { FC } from "react";
+import { MdOutlineStar } from "react-icons/md";
 
-type Props = {
-  image: string | StaticImageData;
-  quote: string;
+interface TestimonialCardProps {
+  rating: number;
+  text: string;
   name: string;
-};
+  image: StaticImageData;
+  bgColor?: string;
+}
 
-const TestimonialCard: React.FC<Props> = ({ image, quote, name }) => {
+const TestimonialCard: FC<TestimonialCardProps> = ({
+  rating,
+  text,
+  name,
+  image,
+  bgColor = "bg-[#F8F8F8]",
+}) => {
   return (
-    <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-      <div className="flex w-[150px] h-[150px] relative mb-6">
-        {/* Pink box behind the image */}
-        <div className="absolute top-[-8px] left-[-8px] w-[130px] h-[120px] bg-[#fcb1c4] z-0 rounded" />
-
-        {/* Image on top */}
-        <Image
-          src={image}
-          alt={name}
-          fill
-          className="object-cover mt-[8px] rounded z-10"
-        />
-      </div>
-
-      <p className="text-lg sm:text-xl text-[#031B4E] font-medium leading-relaxed px-4">
-        &quot;{quote}&quot;
-      </p>
-
-      <div className="flex items-center justify-center gap-2 mt-6 text-yellow-400">
+    <div className={`relative p-6 rounded-2xl shadow-sm ${bgColor} max-w-sm`}>
+      {/* Stars */}
+      <div className="flex mb-4">
         {[...Array(5)].map((_, i) => (
-          <FaStar key={i} size={24} />
+          <MdOutlineStar
+            key={i}
+            size={18}
+            fill={i < rating ? "black" : "#cccccc"}
+            stroke="black"
+            className="mr-1"
+          />
         ))}
       </div>
 
-      <p className="mt-4 text-gray-700 font-medium">{name}</p>
+      {/* Testimonial text */}
+      <p className="text-sm text-gray-700 leading-relaxed mb-4">{text}</p>
+
+      {/* Name */}
+      <p className="font-semibold text-sm text-black">~ {name}</p>
+
+      {/* Profile photo */}
+      <div className="absolute -top-6 right-6 w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+        <Image src={image} alt={name} width={48} height={48} />
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const { description, title } = SEODATA.default;
 export const metadata: Metadata = {
   title: {
     absolute: "",
-    default: "Michigan Instrument Ltd",
+    default: "Bakersfield Elementary Services Limited",
     template: "",
   },
   description: description,

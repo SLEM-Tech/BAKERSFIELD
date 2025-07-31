@@ -130,7 +130,7 @@ const Footer = () => {
   const staggerDelay = 0.2;
 
   return (
-    <footer className="bg-white w-full py-2 flex flex-col item-center border-t-[3px] border-[#D62E55]">
+    <footer className="bg-white w-full py-2 flex flex-col item-center border-t-[3px] border-gray-500">
       <div className="mx-auto max-w-[1400px] w-full hidden slg:block">
         <section className="flex justify-center gap-16 mt-2">
           <div className="flex flex-col gap-4 w-[80%]">
@@ -148,7 +148,7 @@ const Footer = () => {
                     key={linkIndex}
                     href={link.href}
                     onClick={link.function}
-                    className="text-secondary-500 text-sm font-[400] leading-[1.3] hover:text-[#D62E55] transition-[.3]"
+                    className="text-secondary-500 text-sm font-[400] leading-[1.3] hover:text-[#61643b] transition-[.3]"
                   >
                     {link.label}
                   </Link>
@@ -185,7 +185,7 @@ const Footer = () => {
                   <Link
                     key={linkIndex}
                     href={link.href}
-                    className="text-secondary-500 text-xs sm:text-sm font-[400] hover:text-[#D62E55] transition-[.3] leading-6"
+                    className="text-secondary-500 text-xs sm:text-sm font-[400] hover:text-[#61643b] transition-[.3] leading-6"
                   >
                     {link.label}
                   </Link>

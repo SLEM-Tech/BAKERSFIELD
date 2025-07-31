@@ -1,21 +1,17 @@
 import AppLayout from "@src/components/AppLayout";
-import WebStatisticSection from "@src/components/PageFragments/WebStatisticSection";
-import SortedProducts from "./(Home)/_components/SortedProducts";
+import JoinUs from "@src/components/PageFragments/JoinUs";
 import { SEODATA } from "@constants/seoContants";
 import { Metadata } from "next";
-import { HeroSection } from "@src/components/PageFragments/HeroSection";
-import { ShareYourSetup } from "@src/components/PageFragments/ShareYourSetup/ShareYourSetup";
-import { TopCategorySection } from "@src/components/PageFragments/TopCategory";
-import Discovery from "@src/components/PageFragments/DiscoverySection";
-import DiscoverySection from "@src/components/PageFragments/DiscoverySection";
-import FeaturedSection from "@src/components/PageFragments/FeaturedSection";
+import HeroSection from "@src/components/PageFragments/HeroSection";
+import BookStore from "@src/components/PageFragments/BookStore";
 import TestimonialSection from "@src/components/PageFragments/TestimonialSection";
+import FaqSection from "@src/components/PageFragments/FaqSection";
 
 const { description, title } = SEODATA.home;
 export const metadata: Metadata = {
   title: {
     absolute: "",
-    default: "Michigan Instrument Ltd",
+    default: "Bakersfield Elementary Services Limited",
     template: "",
   },
   description: description,
@@ -33,20 +29,20 @@ const page = () => {
   return (
     <AppLayout>
       <main className="flex flex-col gap-5">
-        <div>
+        <div className="mt-[120px]">
           <HeroSection />
         </div>
         <div>
-          <DiscoverySection />
-        </div>
-        <div className="my-8">
-          <WebStatisticSection />
-        </div>
-        <div>
-          <FeaturedSection />
+          <BookStore />
         </div>
         <div>
           <TestimonialSection />
+        </div>
+        <div className="my-8">
+          <JoinUs />
+        </div>
+        <div>
+          <FaqSection />
         </div>
       </main>
     </AppLayout>

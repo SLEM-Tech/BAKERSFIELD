@@ -48,22 +48,27 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <div
-      className={`flex items-center justify-center px-5 border border-[#9e9da1] rounded-3xl overflow-hidden`}
+      className={`xs:w-[150px] md:w-[300px] lg:w-[500px] flex items-center justify-center px-5 bg-gray-100 rounded-3xl overflow-hidden`}
     >
+      {isLoading ? (
+        <ImSpinner2 className="animate-spin mx-auto"/>
+      ) : (
+        <IoSearchOutline
+          onClick={handleSearchClick}
+          size={30}
+          cursor="pointer"
+          color="#374151"
+          className="text-gray-700 mx-auto pr-4"
+        />
+      )}
       <input
         type="text"
         placeholder={placeholder}
-        className="flex-1 text-base text-black/70 pl-2 py-1 border-none outline-none bg-transparent transition"
+        className="w-full flex-1 text-base text-black/70 pl-2 py-1 border-none outline-none bg-transparent transition"
         value={currentSearchValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-
-      {isLoading ? (
-        <ImSpinner2 className="animate-spin mx-auto" />
-      ) : (
-        <IoSearchOutline onClick={handleSearchClick} size={20} cursor="pointer" className="text-[#d8315b] mx-auto" />
-      )}
     </div>
   );
 };

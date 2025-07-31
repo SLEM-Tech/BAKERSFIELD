@@ -257,7 +257,7 @@ const RegisterForm = () => {
 
             <button
               type="submit"
-              className={`w-full flex items-center justify-center py-2 md:py-3 text-sm md:text-base mt-3 md:mt-0 transition text-white rounded-sm mb-2 hover:bg-[#D62E55]/70 ${
+              className={`w-full flex items-center justify-center py-2 md:py-3 text-sm md:text-base mt-3 md:mt-0 transition bg-gray-400 text-white rounded-sm mb-2 hover:bg-gray-700 ${
                 formik.isValid
                   ? "bg-[#D62E55] cursor-pointer"
                   : "bg-[#D62E55]/60 cursor-not-allowed"
@@ -275,7 +275,7 @@ const RegisterForm = () => {
               <span>Already Have account?&nbsp;</span>
               <span
                 onClick={() => router.push("/user/login")}
-                className="text-[#D62E55] font-semibold hover:underline cursor-pointer transition"
+                className="text-gray-900 font-semibold hover:underline cursor-pointer transition"
               >
                 Login Here
               </span>

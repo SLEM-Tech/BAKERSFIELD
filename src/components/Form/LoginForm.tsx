@@ -158,9 +158,9 @@ const LoginForm = () => {
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? (
-                  <FaEye className="text-[#D62E55]" />
+                  <FaEye className="text-[#000000]" />
                 ) : (
-                  <FaEyeSlash className="text-[#D62E55]" />
+                  <FaEyeSlash className="text-[#000000]" />
                 )}
               </span>
             </div>
@@ -177,7 +177,7 @@ const LoginForm = () => {
 
           <button
             type="submit"
-            className={`flex items-center justify-center border relative bg-black2-100 text-white border-transparent hover:border-[#D62E55] hover:bg-[#D62E55] hover:text-white hover:border-transparent text-xs sm:text-sm leading-[1.4] font-semibold py-2.5 sm:py-3 w-full rounded-md gap-1.5 transition ${
+            className={`flex items-center justify-center border relative bg-gray-400 text-white border-transparent hover:border-[#D62E55] hover:bg-gray-700 hover:text-white hover:border-transparent text-xs sm:text-sm leading-[1.4] font-semibold py-2.5 sm:py-3 w-full rounded-md gap-1.5 transition ${
               formik.isValid
                 ? "bg-[#D62E55] cursor-pointer"
                 : "bg-[#D62E55]/60 cursor-not-allowed"
@@ -201,7 +201,7 @@ const LoginForm = () => {
             <span>Don&rsquo;t Have account?&nbsp;</span>
             <span
               onClick={() => router.push("/user/register")}
-              className="text-[#D62E55] font-semibold hover:underline cursor-pointer transition underline-offset-4"
+              className="text-gray-900 font-semibold hover:underline cursor-pointer transition underline-offset-4"
             >
               Signup Here
             </span>
