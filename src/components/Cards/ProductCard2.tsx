@@ -126,7 +126,7 @@ const ProductCard2 = ({
       <button
         onClick={(e) => {
           handleCartClick(e);
-          route.push(`/home-item/product/${slugDesc}-${id}`);
+          // route.push(`/home-item/product/${slugDesc}-${id}`);
         }}
         className="w-full flex items-center justify-around gap-2 bg-[#EFFC94] text-black px-4 py-2 rounded-md border border-black text-sm font-semibold shadow hover:shadow-lg transition"
       >
