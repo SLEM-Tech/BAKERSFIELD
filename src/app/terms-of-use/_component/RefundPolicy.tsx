@@ -6,223 +6,163 @@ const RefundPolicy = () => {
   const GeneralSettings: WooCommerceSetting[] = generalSettings;
 
   return (
-    <div className="text-[#667085]">
+    <div id="refundPolicy" className="text-[#667085]">
       <h3 className="font-semibold text-sm md:text-base xl:text-lg mb-2">
-        NEST AND WHEELS AUTO COMPONENTS LIMITED REFUND POLICY
+        REFUND POLICY - BAKERSFIELD ELEMENTARY SERVICES LIMITED
       </h3>
       <p className="text-xs md:text-sm xl:text-base mb-4">
-        This Refund Policy shall become effective from 30 May 2025 until updated
-        or reviewed.
+        Effective Date: {new Date().toLocaleDateString("en-GB")}
       </p>
 
       <p className="text-xs md:text-sm xl:text-base mb-4">
-        Welcome to{" "}
-        <strong> Nest and Wheels Auto Component Ltd (“Nest & Wheels”).</strong>{" "}
-        {""}
-        We are dedicated to customer satisfaction across all our product lines,
-        including motor parts, automotive fluids (e.g., motor oils), and vehicle
-        sales. This Refund Policy outlines the terms for returns, refunds, and
-        cancellations for purchases processed via any of our payment
-        facilitators.
+        At Bakersfield Elementary Services Limited, we are committed to
+        delivering high-quality digital content that meets your expectations.
+        Our refund policy for audiovisual media, books, and movies is designed
+        to ensure customer satisfaction while protecting intellectual property
+        rights.
       </p>
 
-      <hr className="my-4 border-gray-300" />
-
-      <ol className="list-item space-y-2 leading-[1.8] text-xs md:text-sm xl:text-base">
+      <ul className="list-disc pl-5 space-y-3 leading-[1.8] text-xs md:text-sm xl:text-base">
         <li>
-          <span className="font-bold">1. Product Categories Covered</span>{" "}
-          <br></br>
-          <h6 className="leading-[1.8]">
-            This policy applies to the following types of purchases:
-          </h6>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>
-              <span className="font-medium text-md">Motor Parts:</span>{" "}
-              Aftermarket or OEM parts including filters, spark plugs,
-              batteries, etc.
-            </li>
-            <li>
-              <span className="font-medium text-md">Motor Oils & Fluids: </span>{" "}
-              Engine oil, transmission fluid, coolant, etc.
-            </li>
-            <li>
-              <span className="font-medium text-md">Vehicle Sales: </span> New
-              or used vehicles, including online deposits and down payments.
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <span className="font-bold">2. Refunds for Motor Parts</span>
-          <p className="mt-1">
-            You may request a refund under the following conditions:
-          </p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>The part is defective or damaged upon delivery</li>
-            <li>You received the wrong item</li>
-            <li>
-              The part does not match the vehicle compatibility stated at
-              purchase.
-            </li>
-          </ul>
-
-          <p className="font-bold">Eligibility Requirements:</p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>
-              Return request must be made within
-              <strong>5 &ndash; 7 days</strong> after delivery.
-            </li>
-            <li>
-              Item must be <strong>unused, uninstalled,</strong> and in original
-              packaging
-            </li>
-            <li>Include proof of purchase</li>
-          </ul>
-
-          <p className="font-bold">Non-Refundable Motor Parts:</p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>Installed or used parts</li>
-            <li>Items damaged due to improper installation</li>
-            <li>Special orders or non-stocked parts</li>
-          </ul>
-        </li>
-
-        <li>
-          <span className="font-bold">3. Items Not Eligible for Refund</span>
-          <p className="mt-1">
-            Due to safety, legal, and hygiene considerations, we do{" "}
-            <strong>not</strong> accept returns for motor oils and fluids once
-            delivered, except in cases of:
-          </p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>Incorrect product shipped</li>
-            <li>Product leakage or damage in transit</li>
-            <li>Expired product (if not indicated at purchase)</li>
-          </ul>
-
-          <p className="font-bold">Return Eligibility:</p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>
-              Must be <strong>unopened, sealed,</strong> and reported within{" "}
-              <strong>5 days</strong> of delivery
-            </li>
-            <li>Photos must be provided as proof of damage or defect</li>
-          </ul>
-        </li>
-
-        <li>
-          <span className="font-bold">
-            4. Refunds and Cancellations for Car Sales
+          <span className="font-medium">
+            1. Digital Content Refund Eligibility
           </span>
-          <p className="mt-1">
-            Car purchases (including deposits or down payments made online) are
-            subject to the following:
-          </p>
-          <p className="font-bold">Deposits/Down Payments:</p>
           <ul className="list-disc pl-5 mt-1 space-y-1">
             <li>
-              Refundable <strong>only if the sale is not finalized</strong> due
-              to reasons outside the buyer&apos;s control (e.g., financing
-              denial, seller withdrawal)
+              Technical issues preventing content download or playback within 48
+              hours
             </li>
             <li>
-              Cancellations initiated by the buyer may incur a{" "}
-              <strong>non-refundable fee</strong> ([e.g., 5&ndash;10%] of the
-              deposit)
+              Content quality defects (corruption, missing segments, audio/video
+              sync issues)
+            </li>
+            <li>
+              Mislabeled or incorrectly described content not matching purchase
+              intent
+            </li>
+            <li>
+              Duplicate purchases made within 24 hours of original transaction
+            </li>
+            <li>
+              Content incompatible with supported devices despite meeting
+              specifications
             </li>
           </ul>
         </li>
+      </ul>
 
-        <li>
-          <span className="font-bold">5. Refund Process</span>
-          <p className="mt-1">To request a return or refund:</p>
-          <p className="mt-1">
-            <span className="font-semibold">Email:</span>{" "}
-            amarachinjoku@nestandwheels.com.ng
-          </p>
-          <p className="mt-1">
-            <span className="font-semibold">Phone:</span> 09061139596
-          </p>
-          <p className="mt-1">
-            <span className="font-semibold">Return Portal:</span>{" "}
-            https://www.nestandwheels.com/
-          </p>
-          <p className="mt-1">Please provide:</p>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>Order number or receipt</li>
-            <li>Reason for return</li>
-            <li>Photos (if applicable)</li>
-          </ul>
-          <p className="mt-1">
-            <p className="mt-1">
-              We will review your request and respond within{" "}
-              <strong> 3&ndash;5 business days.</strong>
-            </p>
-          </p>
-        </li>
+      <li>
+        <span className="font-medium">2. Content-Specific Refund Terms</span>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>
+            <strong>Movies & Videos:</strong> Refundable if technical quality
+            doesn&apos;t meet HD standards as advertised
+          </li>
+          <li>
+            <strong>E-Books:</strong> Refundable for format incompatibility or
+            missing content pages
+          </li>
+          <li>
+            <strong>Audio Books:</strong> Refundable for audio quality issues or
+            incomplete recordings
+          </li>
+          <li>
+            <strong>Interactive Media:</strong> Refundable if interactive
+            features fail to function properly
+          </li>
+          <li>
+            <strong>Bundle Packages:</strong> Partial refunds available for
+            defective items within bundles
+          </li>
+        </ul>
+      </li>
 
-        <li>
-          <span className="font-bold">6. Return Shipping</span>
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li>
-              For defective, damaged, or incorrect items, return shipping will
-              be covered by us.
-            </li>
-            <li>
-              For other approved returns, the customer is responsible for return
-              shipping costs.
-            </li>
-            <li>Use a trackable shipping method and retain proof of return.</li>
-          </ul>
-        </li>
+      <li>
+        <span className="font-medium">3. Non-Refundable Digital Content</span>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>
+            Content successfully downloaded and verified as working correctly
+          </li>
+          <li>
+            Change of mind or preference after successful content delivery
+          </li>
+          <li>Content viewed, read, or consumed beyond preview limits</li>
+          <li>
+            Custom or personalized digital content created specifically for
+            customer
+          </li>
+          <li>Gift purchases sent and redeemed by recipients</li>
+        </ul>
+      </li>
 
-        <li>
-          <span className="font-bold">7. Refund Method & Timeline</span>
-          <p className="mt-1">
-            Approved refunds will be processed via our payment facilitator to
-            the original payment method within 7&ndash;14 business days,
-            depending on your bank/card provider.
-          </p>
-        </li>
+      <li>
+        <span className="font-medium">4. Refund Request Process</span>
+        <p className="mt-1">To request a digital content refund:</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Email: refunds@bakersfield.com.ng</li>
+          <li>Technical Support: support@bakersfield.com.ng</li>
+          <li>Phone: +234-801-234-5005</li>
+          <li>Website: www.bakersfield.com.ng</li>
+          <li>Live Chat: 8 AM - 10 PM (WAT)</li>
+        </ul>
+      </li>
 
-        <li>
-          <span className="font-bold">8. Dispute Resolution</span>
-          <p className="mt-1">
-            If you are not satisfied with the outcome of your refund request,
-            you may initiate a formal dispute through the payment facilitator
-            utilized or your card issuer. However, we recommend contacting us
-            first to resolve the matter directly.
-          </p>
-        </li>
+      <li>
+        <span className="font-medium">5. Refund Processing Timeline</span>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Initial review and response within 24 hours</li>
+          <li>Technical verification completed within 48 hours</li>
+          <li>Approved refunds processed within 3-5 business days</li>
+          <li>
+            Complex cases may require up to 7 days for thorough investigation
+          </li>
+          <li>Refund confirmation sent via email with transaction details</li>
+        </ul>
+      </li>
 
-        <li>
-          <span className="font-bold">9. Policy Updates/Review</span>
-          <p className="mt-1">
-            Next & Wheels reserves the right to amend this Refund Policy at any
-            time. Any updates will be posted to our website and become effective
-            immediately.
-          </p>
-        </li>
-      </ol>
+      <li>
+        <span className="font-medium">6. Alternative Resolution Options</span>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Content replacement with alternative format or quality option</li>
+          <li>
+            Store credit for future purchases (120% of original purchase value)
+          </li>
+          <li>Free content upgrade to premium version when available</li>
+          <li>Extended download period for technical difficulties</li>
+          <li>Complimentary technical support for content optimization</li>
+        </ul>
+      </li>
+
+      <li>
+        <span className="font-medium">7. Content Protection & Fair Use</span>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>
+            Refunded content access is automatically revoked upon refund
+            approval
+          </li>
+          <li>
+            Downloaded content must be deleted from all devices after refund
+          </li>
+          <li>Abuse of refund policy may result in account restrictions</li>
+          <li>All refunds comply with digital content licensing agreements</li>
+        </ul>
+      </li>
 
       <div className="mt-6 pt-4 border-t border-gray-200">
         <h4 className="font-semibold text-xs md:text-sm xl:text-base mb-2">
-          Contact Us via the following contact details:
+          Contact Information
         </h4>
-        <p className="text-xs font-semibold md:text-sm xl:text-base">
-          Nest Wheels Autos.
+        <p className="text-xs md:text-sm xl:text-base">
+          For digital content refunds and support:
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1 text-xs md:text-sm xl:text-base">
+          <li>Bakersfield Elementary Services Limited</li>
+          <li>Email: refunds@bakersfield.com.</li>
+          <li>Phone: +234-801-234-5005</li>
+          <li>Include purchase confirmation and detailed issue description</li>
+          <li>Provide screenshots or error messages for technical issues</li>
           <li>
-            <span className="font-semibold">Email:</span>{" "}
-            amarachinjoku@nestandwheels.com.ng
-          </li>
-          <li>
-            <span className="font-semibold">Phone:</span> 09061139596
-          </li>
-          <li>
-            <span className="font-semibold">Website:</span>{" "}
-            https://www.nestandwheels.com/
+            Submit request within 48 hours of purchase for fastest processing
           </li>
         </ul>
       </div>

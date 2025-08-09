@@ -9,7 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import MobileNav from "./MobileNav";
 import useToken from "../hooks/useToken";
 import * as bi from "react-icons/bi";
-import { FaCartArrowDown } from "react-icons/fa";
+import { FaCartArrowDown, FaChevronDown } from "react-icons/fa";
 import { useMutation } from "react-query";
 import { getFirstCharacter, signOut } from "@utils/lib";
 import {
@@ -21,7 +21,7 @@ import {
 import { FormatMoney2 } from "../Reusables/FormatMoney";
 import { SlArrowDown } from "react-icons/sl";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { Popover, Transition } from "@headlessui/react";
 import { useCategories, useCustomer } from "../lib/woocommerce";
 import {
@@ -52,6 +52,7 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 import CurrencyDropdown from "./CurrencyDropdown";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import UserMenu from "./UserMenu";
+import Image from "next/image";
 
 const Header = () => {
   const pathname = usePathname();
@@ -68,6 +69,9 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const [selectedCurrency, setSelectedCurrency] = useState(baseCurrency.code);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const selected =
+    currencyOptions.find((c) => c.code === selectedCurrency) ||
+    currencyOptions[0];
 
   // const { token } = useAppSelector((ele) => ele?.auth);
 
@@ -103,7 +107,7 @@ const Header = () => {
     isError: categoryIsError,
   } = useCategories("");
 
-  const Categories: CategoryType[] = categories;
+  const Categories: CategoryType[] = categories ?? [];
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -120,6 +124,28 @@ const Header = () => {
       0
     );
   };
+
+  const mobileDropDownLinks = [
+    {
+      id: 1,
+      href: "/user/dashboard",
+      icon: <bi.BiUser className="text-base" />,
+      label: "My Account",
+    },
+    {
+      id: 2,
+      href: "/user/my-orders",
+      icon: <FaCartArrowDown className="text-base" />,
+      label: "Orders",
+    },
+
+    {
+      id: 3,
+      href: "/cart",
+      icon: <FiShoppingCart className="text-base" />,
+      label: "Cart",
+    },
+  ];
 
   const handleisMobileNavClick = () => {
     setIsUserClick(!isUserClick);
@@ -238,20 +264,21 @@ const Header = () => {
         </div>
 
         {/* header row 2 */}
-        <div className="flex items-center justify-between xs:gap-2 lg:gap-0 xs:mx-8 lg:mx-20">
+        <div className="flex items-center justify-between xs:gap-2 lg:gap-0 xs:mr-6 lg:mx-20">
           {/* header logo and hanburger menu */}
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex basis-1/4 items-center justify-start gap-0">
             <Link href={"/"} className="xs:text-lg lg:text-4xl  text-gray-800">
-              Logo
+              <LogoImage className="w-[75px] " />
             </Link>
-            <div className="" onClick={toggleDrawer}>
+            <div className="cursor-pointer" onClick={toggleDrawer}>
               <ImMenu color="#343620" />
             </div>
           </div>
 
           {/* search input */}
-          <div className="flex h-10 col-span-2">
+          <div className="xs:hidden md:flex basis-1/2 h-10 col-span-2">
             <SearchInput
+              className=""
               placeholder="...Search"
               searchValue={searchValue}
               setSearchQuery={setSearchValue}
@@ -260,28 +287,142 @@ const Header = () => {
             />
           </div>
 
-          {/* currency dropdown */}
-          <div className="flex items-center xs:justify-center md:justify-between xs:gap-0 md:gap-4">
-            <div className="xs:hidden md:flex">
-              <CurrencyDropdown />
-            </div>
+          <div className="flex basis-1/4 items-center justify-end gap-4 relative">
+            {/* currency converter */}
 
-            {/* shoping cart and usermenu */}
-            <div className="flex items-center md:justify-between">
-              <div className="flex items-center justify-between gap-4 py-4">
-                <Link href={""} className="relative flex items-center">
-                  <HiOutlineShoppingBag size={30} />
-                  <span className="absolute top-0 right-[-6px] bg-white">
-                    0
+            <Dropdown>
+              <DropdownTrigger>
+                <button
+                  type="button"
+                  className="flex items-center xs:gap-1 md:gap-2 bg-neutral-900 text-white px-2 py-2 rounded-md text-xs w-full xs:max-w-[150px] md:max-w-[90px] truncate"
+                >
+                  <Image
+                    src={selected?.flag}
+                    alt={selected?.code}
+                    width={20}
+                    height={14}
+                  />
+                  <FaChevronDown className="flex-shrink-0" color="#ffffff" />
+                  <span className="flex-grow-1">{selected?.code}</span>
+                </button>
+              </DropdownTrigger>
+
+              <DropdownMenu
+                aria-label="Select Base Currency"
+                selectionMode="single"
+                selectedKeys={new Set([selectedCurrency])}
+                onSelectionChange={(keys) => {
+                  handleCurrencyChange(keys);
+                }}
+                className="bg-white rounded-md pb-4 text-sm lg:text-base"
+              >
+                {currencyOptions.map((currency) => {
+                  const isSelected = selectedCurrency === currency.code;
+                  return (
+                    <DropdownItem
+                      key={currency.code}
+                      value={currency.code}
+                      className={`w-fit ${isSelected ? "text-[#88c96f]" : ""}`}
+                    >
+                      {`${currency.country} | ${currency.code} (${currency.symbol})`}
+                    </DropdownItem>
+                  );
+                })}
+              </DropdownMenu>
+            </Dropdown>
+
+            {/* shoping cart */}
+
+            <div
+              className="relative flex items-center gap-1 text-[#181a17] cursor-pointer"
+              onClick={() => router.push("/cart")}
+            >
+              <div className="relative">
+                <HiOutlineShoppingBag size={30} />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-[#181a17] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                    {totalItems}
                   </span>
-                </Link>
-
-                <div className="flex items-center">
-                  <UserMenu />
-                </div>
+                )}
               </div>
             </div>
+
+            {/* Login / Avatar */}
+            <div
+              className="flex items-center gap-1 text-[#181a17] cursor-pointer"
+              onClick={() => {
+                if (!firstName) {
+                  router.push("/user/login");
+                } else {
+                  handleisMobileNavClick();
+                }
+              }}
+            >
+              {firstName ? (
+                wc_customer_info?.shipping?.address_2 ? (
+                  <img
+                    src={wc_customer_info?.shipping?.address_2}
+                    alt="user-avatar"
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="w-6 h-6 flex items-center justify-center bg-gray-300 text-white rounded-full text-sm font-bold">
+                    {getFirstCharacter(firstName)}
+                  </span>
+                )
+              ) : (
+                <FiUser className="w-5 h-5" />
+              )}
+              <span className="text-sm font-medium">
+                {firstName || "Login"}
+              </span>
+              {firstName && <SlArrowDown className="text-sm ml-1" />}
+            </div>
+
+            {/* Dropdown */}
+            <AnimatePresence>
+              {isUserClick && firstName && (
+                <motion.nav
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -10, opacity: 0 }}
+                  className="absolute top-8 right-14 bg-white shadow-xl rounded-xl w-40 py-2 z-50"
+                >
+                  {mobileDropDownLinks?.map((item, i) => (
+                    <Link
+                      key={i}
+                      href={item.href}
+                      className={`flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 ${
+                        pathname === item.href
+                          ? "text-[#181a17]"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  ))}
+                  <div
+                    onClick={signOut}
+                    className="text-sm text-gray-500 hover:text-[#181a17] text-center mt-2 cursor-pointer border-t pt-2"
+                  >
+                    Log Out
+                  </div>
+                </motion.nav>
+              )}
+            </AnimatePresence>
           </div>
+        </div>
+        {/* header row 3 */}
+        <div className="xs:flex md:hidden w-full xs:my-1 h-10 px-2">
+          <SearchInput
+            className="flex-1 text-base text-black/70 pl-4 pr-2 !py-1.5 h-[2.8rem] bg-gray-100/30 !rounded-full outline-none focus:border-[#88c96f] focus:ring-1 transition"
+            placeholder="...Search"
+            searchValue={searchValue}
+            setSearchQuery={setSearchValue}
+            onSearch={handleSearch}
+            isLoading={false}
+          />
         </div>
       </header>
 
@@ -293,8 +434,8 @@ const Header = () => {
         className="px-5"
       >
         <div className="mt-4 flex w-full justify-between items-center">
-          <Link href="/" className="text-4xl font-bold">
-            Logo
+          <Link href={"/"} className="xs:text-lg lg:text-4xl  text-gray-800">
+            <LogoImage className="w-[75px] " />
           </Link>
 
           <GrClose

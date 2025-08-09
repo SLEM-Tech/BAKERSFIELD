@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 const page = () => {
 	return (
 		<AppLayout>
-			<main className='flex flex-col slg:flex-row gap-4 w-full mt-32 slg:mt-28 px-2 sm:px-12 mx-auto'>
+			<main className='flex flex-col slg:flex-row gap-4 w-full xs:mt-48 md:mt-32 px-2 sm:px-12 mx-auto'>
 				<MainCategorySection />
 			</main>
 		</AppLayout>

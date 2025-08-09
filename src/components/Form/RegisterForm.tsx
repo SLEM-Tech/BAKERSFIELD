@@ -105,7 +105,7 @@ const RegisterForm = () => {
 			<h3 className='text-sm sm:text-base md:text-2xl text-black text-center'>
 				Email was sent to your mail to continue registration
 			</h3>
-			<h3 className='hover:underline text-xs sm:text-sm md:text-base cursor-pointer hover:text-primary'>
+			<h3 className='hover:underline text-xs sm:text-sm md:text-base cursor-pointer hover:text-gray-700'>
 				Click here to go back to registration page
 			</h3>
 		</>
@@ -247,9 +247,9 @@ const RegisterForm = () => {
                   onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (
-                    <FaEyeSlash className="text-primary" />
+                    <FaEyeSlash className="text-gray-700" />
                   ) : (
-                    <FaEye className="text-primary" />
+                    <FaEye className="text-gray-700" />
                   )}
                 </span>
               </div>

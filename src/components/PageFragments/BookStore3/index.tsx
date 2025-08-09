@@ -1,108 +1,85 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Carousel from "@src/components/Reusables/Carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import BookCard from "../BookStoreCard";
-import { StaticImageData } from "next/image";
-import img1 from "@public/images/bookstore/img1.png";
-
+import { TopCategoryCard } from "../TopCategoryCard";
+import { useCategories } from "@src/components/lib/woocommerce";
 import { convertToSlug } from "@constants";
-import Benefits from "../Benefits";
 
-interface BookCardProps {
-  title: string;
-  description: string;
-  price: string;
-  imageUrl: string | StaticImageData;
-}
-
-const sampleBooks: BookCardProps[] = [
-  {
-    title: "Book 3",
-    description: "Lorem ipsum dolor sit amet",
-    price: "NGN12,000.00",
-    imageUrl: img1,
-  },
-  {
-    title: "Book 3",
-    description: "Lorem ipsum dolor sit amet",
-    price: "NGN12,000.00",
-    imageUrl: img1,
-  },
-  {
-    title: "Book 3",
-    description: "Lorem ipsum dolor sit amet",
-    price: "NGN12,000.00",
-    imageUrl: img1,
-  },
-  {
-    title: "Book 3",
-    description: "Lorem ipsum dolor sit amet",
-    price: "NGN12,000.00",
-    imageUrl: img1,
-  },
-  {
-    title: "Book 3",
-    description: "Lorem ipsum dolor sit amet",
-    price: "NGN12,000.00",
-    imageUrl: img1,
-  },
-];
-
-const Loader = () => (
-  <>
-    {[...Array(6)].map((_, idx) => (
-      <div
-        key={idx}
-        className="min-w-[240px] sm:min-w-[280px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0"
-      />
-    ))}
-  </>
-);
-
-const DiscoverySection = () => {
+export const BookCategories = ({ className = "" }) => {
+  const [displayMore, setDisplayMore] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [maxScrollTotal, setMaxScrollTotal] = useState(0);
   const [scrollLeftTotal, setScrollLeftTotal] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [maxScrollTotal, setMaxScrollTotal] = useState(0);
+
+  const { data: categories, isLoading } = useCategories("");
+  const Categories = categories || [];
+
+  const visibleCategories = displayMore
+    ? Categories?.filter(
+        (category: any) =>
+          category?.count > 0 && category?.name !== "Uncategorized"
+      )
+    : Categories?.filter(
+        (category: any) =>
+          category?.count > 0 && category?.name !== "Uncategorized"
+      )?.slice(0, 5);
 
   const handleNext = () => {
     if (sliderRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-      const maxScroll = scrollWidth - clientWidth;
-      setScrollLeftTotal(scrollLeft);
-      setMaxScrollTotal(maxScroll);
-
-      sliderRef.current.scrollLeft += 600;
-      setCurrentIndex((prevIndex) =>
-        prevIndex < sampleBooks.length - 1 ? prevIndex + 1 : prevIndex
-      );
+      const slider = sliderRef.current;
+      const cardWidth = slider.offsetWidth / getItemsPerView();
+      slider.scrollLeft += cardWidth * getItemsPerView();
+      setScrollLeftTotal(slider.scrollLeft);
+      setMaxScrollTotal(slider.scrollWidth - slider.clientWidth);
     }
   };
 
   const handlePrev = () => {
     if (sliderRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-      const maxScroll = scrollWidth - clientWidth;
-      setScrollLeftTotal(scrollLeft);
-      setMaxScrollTotal(maxScroll);
-
-      if (scrollLeft > 0) {
-        sliderRef.current.scrollLeft -= 600;
-        setCurrentIndex((prevIndex) =>
-          prevIndex > 0 ? prevIndex - 1 : prevIndex
-        );
-      }
+      const slider = sliderRef.current;
+      const cardWidth = slider.offsetWidth / getItemsPerView();
+      slider.scrollLeft -= cardWidth * getItemsPerView();
+      setScrollLeftTotal(slider.scrollLeft);
+      setMaxScrollTotal(slider.scrollWidth - slider.clientWidth);
     }
   };
 
+  const getItemsPerView = () => {
+    if (typeof window === "undefined") return 6;
+    if (window.innerWidth < 640) return 2; // xs
+    if (window.innerWidth < 768) return 3; // sm
+    if (window.innerWidth < 1024) return 4; // md
+    if (window.innerWidth < 1280) return 5; // lg
+    return 6; // xl and up
+  };
+
+  if (isLoading || Categories.length === 0) {
+    return <div className="text-center py-10">Loading Top categories...</div>;
+  }
+
   return (
-    <section className="px-4 w-full overflow-hidden">
-      <div className="w-full">
+    <section
+      className={`bg-discovery-gradient pt-4 pb-12 relative overflow-hidden ${className}`}
+    >
+      <div className="w-full text-[#1A1A1A]">
+        <div className="flex flex-col items-center gap-6">
+          <div className="container flex flex-col items-center text-[#1A1A1A] gap-4 pt-8">
+            <p className="text-lg font-medium">Our Bookstore</p>
+            <h4 className="xs:text-2xl md:text-2xl lg:text-4xl font-normal xs:text-center md:text-left">
+              Discover knowledge in form of books
+            </h4>
+          </div>
+        </div>
+
+        <p className="relative text-gray-900 xs:pl-5 xs:mt-5 py-1 font-semibold uppercase text-sm lg:text-[20px] tracking-wide z-10">
+          Book Categories
+        </p>
+      </div>
+
+      <div className="relative mt-10">
         <Carousel
-          totalDataNumber={sampleBooks.length}
+          totalDataNumber={visibleCategories.length}
           maxScrollTotal={maxScrollTotal}
           scrollLeftTotal={scrollLeftTotal}
           handleNext={handleNext}
@@ -110,37 +87,32 @@ const DiscoverySection = () => {
         >
           <div
             ref={sliderRef}
-            className="w-full flex space-x-6 overflow-x-auto scroll-smooth overflow-y-hidden no-scrollbar px-4 sm:px-8"
+            className="flex flex-nowrap gap-[2px] overflow-x-auto scroll-smooth xs:snap-x scrollbar-hide"
           >
-            {isLoading ? (
-              <Loader />
-            ) : (
-              sampleBooks.map(
-                ({ title, description, price, imageUrl }, index) => (
-                  <div
-                    key={index}
-                    className="min-w-[240px] sm:min-w-[280px] max-w-[300px] shrink-0"
-                  >
-                    <BookCard
-                      title={title}
-                      description={description}
-                      price={price}
-                      imageUrl={imageUrl}
-                    />
-                  </div>
-                )
-              )
-            )}
+            {visibleCategories.map((category: any, i: any) => (
+              <div
+                key={i}
+                className="shrink-0 xs:min-w-[50%] sm:min-w-[33.33%] md:min-w-[25%] lg:min-w-[20%] xl:min-w-[16.66%]"
+              >
+                <TopCategoryCard
+                  category={category?.name}
+                  imgPath={category?.images?.src}
+                  link={`${convertToSlug(category?.name)}-${category?.id}`}
+                />
+              </div>
+            ))}
           </div>
         </Carousel>
-      </div>
 
-      <div className="mt-12 bg-[#fdfdf4]">
-        <Benefits />
+        {/* <div
+          className="mt-2 text-xs text-right cursor-pointer text-[#7fc561] hover:underline pr-6"
+          onClick={() => setDisplayMore(!displayMore)}
+        >
+          {displayMore ? "Show Less" : "Show More"}
+        </div> */}
       </div>
     </section>
   );
 };
 
-export default DiscoverySection;
-
+export default BookCategories;

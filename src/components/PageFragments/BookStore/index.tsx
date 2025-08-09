@@ -1,68 +1,164 @@
 "use client";
+import { convertToSlug } from "@constants";
+import ProductCard2 from "@src/components/Cards/ProductCard2";
+import {
+  useCategories,
+  useProduct,
+  useProductsByCategory,
+  WooCommerce,
+} from "@src/components/lib/woocommerce";
+import Carousel from "@src/components/Reusables/Carousel";
+import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
 
-import React, { useState } from "react";
-import BookStore1 from "@src/components/PageFragments/BookStore1";
-import BookStore2 from "@src/components/PageFragments/BookStore2";
-import BookStore3 from "@src/components/PageFragments/BookStore3";
+export const Loader = () => (
+  <>
+    {/* Add more loader divs if you want more placeholders */}
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+    <div className="sm:w-[300px] min-w-[150px] md:min-w-[180px] h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+  </>
+);
 
-const storeData = [
-  {
-    key: "store1",
-    title: "Lorem ipsum",
-    description: "Discover book1",
-    component: <BookStore1 />,
-  },
-  {
-    key: "store2",
-    title: "Lorem ipsum",
-    description: "Discover book2",
-    component: <BookStore2 />,
-  },
-  {
-    key: "store3",
-    title: "Lorem ipsum",
-    description: "Discover book3",
-    component: <BookStore3 />,
-  },
-] as const;
+export const MainLoader = () => (
+  <>
+    <div className=" w-full h-[180px] sm:h-[280px] bg-gray-200 animate-pulse rounded-md shrink-0" />
+  </>
+);
 
-type StoreKey = (typeof storeData)[number]["key"];
+const BookStore = () => {
+  const sliderRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-const BookstoreTabs = () => {
-  const [activeStore, setActiveStore] = useState<StoreKey>("store1");
+  const {
+    data: categories,
+    isLoading: categoryWpIsLoading,
+    isError: categoryIsError,
+  } = useCategories("");
 
-  const renderActiveComponent = () => {
-    const active = storeData.find((item) => item.key === activeStore);
-    return active?.component || null;
+  const [categoryProductsMap, setCategoryProductsMap] = useState<{
+    [key: string]: ProductType[];
+  }>({});
+
+  useEffect(() => {
+    const fetchCategoryProducts = async () => {
+      setIsLoading(true);
+      try {
+        const filteredCategories = categories
+          ?.filter((category: CategoryType) => category?.count > 0)
+          ?.slice(0, 5);
+
+        if (filteredCategories) {
+          const productsPromises = filteredCategories.map(
+            async (category: CategoryType) => {
+              const response = await WooCommerce.get(
+                `products?category=${category?.id}`
+              );
+              return { [category?.id]: response?.data };
+            }
+          );
+          const productsResults = await Promise.all(productsPromises);
+          const productsMap = productsResults.reduce(
+            (acc, result) => ({ ...acc, ...result }),
+            {}
+          );
+          setCategoryProductsMap(productsMap);
+        }
+      } catch (error) {
+        console.error("Error fetching category products:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (categories?.length) fetchCategoryProducts();
+  }, [categories]);
+
+  const handleScroll = (categoryId: number, direction: "next" | "prev") => {
+    const slider = sliderRefs.current[categoryId];
+    if (slider) {
+      const distance = 600;
+      const scrollAmount = direction === "next" ? distance : -distance;
+      slider.scrollLeft += scrollAmount;
+    }
   };
 
   return (
-    <div className="min-h-[60vh] flex flex-col items-center gap-6">
-      <div className="container flex flex-col items-center text-[#1A1A1A] gap-4 pt-8">
-        <p className="text-lg font-medium">Our Bookstore</p>
-        <h4 className="xs:text-2xl md:text-2xl lg:text-4xl font-normal xs:text-center md:text-left">
-          Discover knowledge in form of books
-        </h4>
-      </div>
+    <div className="mb-8 lg:mb-16">
+      {isLoading && <MainLoader />}
+      {categories
+        ?.filter((category: CategoryType) => category?.count > 0)
+        ?.slice(0, 5)
+        ?.map((category: CategoryType) => {
+          const categoryId = category?.id;
+          const products = categoryProductsMap[categoryId] || [];
 
-      <div className="flex justify-between md:gap-10 xs:px-4 xs:gap-5">
-        {storeData.map(({ key, title, description }) => (
-          <div
-            key={key}
-            onClick={() => setActiveStore(key)}
-            className={`cursor-pointer flex flex-col text-[#000000] px-8 py-4 ${
-              activeStore === key ? "border-b-2 border-black" : ""
-            }`}
-          >
-            <p className="font-normal text-center text-large">{title}</p>
-            <p className="text-xs text-center">{description}</p>
-          </div>
-        ))}
-      </div>
-      <hr className="text-gray-400" />
-      <div className="w-full">{renderActiveComponent()}</div>
+          return (
+            <div
+              key={categoryId}
+              className="flex flex-col gap-5 sm:gap-16 justify-center mb-10 sm:mb-12"
+            >
+              <div className="w-full items-center flex justify-between px-4 ">
+                <span className="text-[16px]">
+                  <Link
+                    href={`/category/${convertToSlug(
+                      category?.name
+                    )}-${categoryId}`}
+                    dangerouslySetInnerHTML={{ __html: category?.name }}
+                    className="relative text-gray-900 xs:pl-5 md:pl-2 xs:mt-5 py-1 font-semibold uppercase text-sm lg:text-[20px] tracking-wide z-10"
+                  />
+                </span>
+                <div className="xs:hidden md:block flex items-center justify-center ">
+                  <Link
+                    href={`/category/${convertToSlug(
+                      category?.name
+                    )}-${categoryId}`}
+                    className="mt-2 text-sm font-medium cursor-pointer text-[#303030] hover:underline"
+                  >
+                    View all
+                  </Link>
+                </div>
+              </div>
+
+              <Carousel
+                handleNext={() => handleScroll(categoryId, "next")}
+                handlePrev={() => handleScroll(categoryId, "prev")}
+                totalDataNumber={products.length}
+              >
+                <div
+                  ref={(el) => (sliderRefs.current[categoryId] = el)}
+                  className="w-full flex space-x-6 overflow-x-auto scroll-smooth overflow-y-hidden no-scrollbar px-4 sm:px-8"
+                >
+                  {isLoading ? (
+                    <Loader />
+                  ) : (
+                    products.map((product: ProductType) => (
+                      <div
+                        key={product.id}
+                        className="shrink-0 w-[calc(100%/2-1rem)] md:w-[calc(100%/3-1.5rem)] lg:w-[calc(100%/5-1.5rem)]"
+                      >
+                        <ProductCard2
+                          id={product.id}
+                          image={product.images[0]?.src}
+                          oldAmount={product.regular_price}
+                          newAmount={product.price}
+                          description={product.name}
+                          title={product.name}
+                        />
+                      </div>
+                    ))
+                  )}
+                </div>
+              </Carousel>
+            </div>
+          );
+        })}
     </div>
   );
 };
 
-export default BookstoreTabs;
+export default BookStore;

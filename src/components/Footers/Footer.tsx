@@ -91,15 +91,6 @@ const Footer = () => {
       ],
     },
     {
-      title: "Products",
-      links: [
-        { label: "Product 1", href: "" },
-        { label: "Product 2", href: "" },
-        { label: "Product 3", href: "" },
-        { label: "Product 4", href: "" },
-      ],
-    },
-    {
       title: "Informatio",
       links: [
         { label: "FAQ", href: "/faq" },
@@ -130,11 +121,13 @@ const Footer = () => {
   const staggerDelay = 0.2;
 
   return (
-    <footer className="bg-white w-full py-2 flex flex-col item-center border-t-[3px] border-gray-500">
+    <footer className="bg-white w-full py-2 flex flex-col item-center border-t-[3px] border-[#ecf494]">
       <div className="mx-auto max-w-[1400px] w-full hidden slg:block">
         <section className="flex justify-center gap-16 mt-2">
-          <div className="flex flex-col gap-4 w-[80%]">
-            <h2 className="p-6 font-bold">Logo</h2>
+          <div className="flex flex-col gap-4 w-[80%] ml-[90px]">
+            <Link href="/" className="">
+              <LogoImage className="w-[75px] " />
+            </Link>
           </div>
 
           <div className="flex gap-4 w-full pt-3">
@@ -148,7 +141,7 @@ const Footer = () => {
                     key={linkIndex}
                     href={link.href}
                     onClick={link.function}
-                    className="text-secondary-500 text-sm font-[400] leading-[1.3] hover:text-[#61643b] transition-[.3]"
+                    className="text-secondary-500 text-sm font-[400] leading-[1.3] hover:text-[[#ecf494]] transition-[.3]"
                   >
                     {link.label}
                   </Link>
@@ -164,13 +157,15 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto flex w-full flex-col slg:hidden mb-4">
-        <section className="flex flex-col justify-between gap-1 sm:gap-6 mt-2 px-2 xs:px-6 sm:px-10">
+        <section className="flex flex-col justify-between gap-1 sm:gap-6 mt-2 px-2 xs:px-6 sm:px-6">
           <div className="flex w-full justify-between items-end gap-4">
-            <div className="xs:flex xs:items-center xs:justify-around xs:w-full">
-              Logo
-              <span className="text-secondary-300 text-xs sm:text-base leading-[1.6] font-[400]">
+            <div className="xs:flex xs:ml-[-10px] xs:items-center xs:justify-between xs:w-full">
+              <Link href="/" className="">
+                <LogoImage className="w-[75px] " />
+              </Link>
+              <p className="text-secondary-300 sm:mr-[60px] text-xs sm:text-base leading-[1.6] font-[400]">
                 ..The best store for you!
-              </span>
+              </p>
             </div>
           </div>
 
@@ -185,7 +180,7 @@ const Footer = () => {
                   <Link
                     key={linkIndex}
                     href={link.href}
-                    className="text-secondary-500 text-xs sm:text-sm font-[400] hover:text-[#61643b] transition-[.3] leading-6"
+                    className="text-secondary-500 text-xs sm:text-sm font-[400] hover:text-[[#ecf494]] transition-[.3] leading-6"
                   >
                     {link.label}
                   </Link>
@@ -197,8 +192,8 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto w-full max-w-[1156px]">
-        <div className="flex items-center justify-between py-2">
-          <div className="text-secondary-500 text-[8px] sm:text-[10px] slg:text-xs font-[400] leading-[1.2]">
+        <div className="flex items-center justify-between py-2 px-2">
+          <div className="text-secondary-500 xs:max-w-[250px] lg:max-w-full text-[8px] sm:text-[10px] slg:text-xs font-[400] leading-[1.2]">
             Copyright&nbsp;@ {currentYear}&nbsp;{CompanyName} Alright Reserved.
           </div>
           <div className="flex gap-1">
