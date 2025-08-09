@@ -18,6 +18,7 @@ const SearchDataOutput = ({ data, isloading }: SearchDataOutputProps) => {
 			oldAmount={product?.regular_price}
 			newAmount={product?.price}
 			description={product?.name}
+			title=""
 		/>
 	));
 

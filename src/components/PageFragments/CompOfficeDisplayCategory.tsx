@@ -37,6 +37,7 @@ const CompOfficeDisplayCategory = ({
 			oldAmount={product.prices.discount}
 			newAmount={product.prices.originalPrice}
 			description={product.title.en}
+			title=""
 		/>
 	));
 
