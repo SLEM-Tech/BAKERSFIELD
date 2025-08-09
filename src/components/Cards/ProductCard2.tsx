@@ -119,7 +119,7 @@ const ProductCard2 = ({
 
       {/* Price */}
       <p className="text-base font-medium text-black mb-4">
-        ₦{NewAmount.toLocaleString()}
+        {NewAmount ? <FormatMoney2 value={NewAmount} /> : "Out of Stock"}
       </p>
 
       {/* Add to Cart */}
