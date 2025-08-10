@@ -10,6 +10,7 @@ interface SearchInputProps {
   setSearchQuery: (query: string) => void;
   isLoading?: boolean;
   onSearch?: () => void;
+  className: string;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
@@ -18,6 +19,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   setSearchQuery,
   isLoading = false,
   onSearch,
+  className,
 }) => {
   // Internal state used only if externalSearchValue is not provided
   const [internalSearchValue, setInternalSearchValue] = useState("");
@@ -48,23 +50,23 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <div
-      className={`xs:w-[150px] md:w-[300px] lg:w-[500px] flex items-center justify-center px-5 bg-gray-100 rounded-3xl overflow-hidden`}
+      className={`bg-[#f2f2f2] w-full flex items-center rounded-xl overflow-hidden ${className}`}
     >
       {isLoading ? (
-        <ImSpinner2 className="animate-spin mx-auto"/>
+        <ImSpinner2 className="animate-spin mx-auto" />
       ) : (
         <IoSearchOutline
           onClick={handleSearchClick}
-          size={30}
+          size={40}
           cursor="pointer"
           color="#374151"
-          className="text-gray-700 mx-auto pr-4"
+          className="text-gray-700 mx-auto pl-4"
         />
       )}
       <input
         type="text"
         placeholder={placeholder}
-        className="w-full flex-1 text-base text-black/70 pl-2 py-1 border-none outline-none bg-transparent transition"
+        className="w-full flex-1 text-base text-black/70 pl-6 py-1 border-none outline-none bg-transparent transition"
         value={currentSearchValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}

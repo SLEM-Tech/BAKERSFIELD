@@ -33,7 +33,7 @@ const page = async ({ params: { id } }: ProductIdProps) => {
 
 	return (
 		<AppLayout>
-			<main className='mt-32 lg:mt-24 mx-auto max-w-[1156px] min-h-[50vh]'>
+			<main className='xs:mt-44 lg:mt-30 mx-auto max-w-[1156px] min-h-[50vh]'>
 				<Back />
 				<ProductDisplaySection FormatedId={formatedId} />
 			</main>

@@ -16,7 +16,10 @@ export const TopCategoryCard = ({
   link,
 }: TopCategoryCardProps) => {
   return (
-    <Link href={link} className="flex flex-col items-center space-y-2">
+    <Link
+      href={`${"/category/" + link}`}
+      className="flex flex-col items-center space-y-2"
+    >
       <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden">
         <Image
           src={imgPath}

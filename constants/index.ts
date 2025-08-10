@@ -15,6 +15,8 @@ import { LockIconSvg } from "@src/components/SvgIcons";
 import { AiOutlineUnlock } from "react-icons/ai";
 import { BsTags } from "react-icons/bs";
 import { BiSolidUserAccount } from "react-icons/bi";
+import ng from "@public/images/flags/ng.png";
+import us from "@public/images/flags/us.png";
 
 export const convertToSlug2 = (input: string): string => {
 	// Remove HTML entities like &amp; and convert to plain text
@@ -1173,21 +1175,24 @@ export const currencyOptions: {
 	label: string;
 	symbol: string;
 	country: string;
-	countryCode: string; // Added country code
+	countryCode: string;
+	flag: any; // Added country code
 }[] = [
 	{
 		code: "NGN",
 		label: "Nigerian Naira (₦)",
 		symbol: "₦",
 		country: "Nigeria",
-		countryCode: "NG", // Added country code for Nigeria
+		countryCode: "NG",
+		flag: ng, // Added country code for Nigeria
 	},
 	{
 		code: "USD",
 		label: "US Dollar ($)",
 		symbol: "$",
 		country: "United States",
-		countryCode: "US", // Added country code for United States
+		countryCode: "US",
+		flag: us, // Added country code for United States
 	},
 ];
 

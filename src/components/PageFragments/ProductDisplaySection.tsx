@@ -149,7 +149,7 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 
 								<div className={`flex flex-col sm:mt-3`}>
 									<div className='flex gap-4 sm:gap-6 justify-start items-center py-5 slg:py-3'>
-										<h3 className='text-2xl slg:text-3xl font-semibold leading-[.95] text-primary'>
+										<h3 className='text-2xl slg:text-3xl font-semibold leading-[.95] text-gray-700'>
 											{Price ? <FormatMoney2 value={Price} /> : "Out of Stock"}
 										</h3>
 
@@ -166,7 +166,7 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 										<div className='flex'>
 											<div
 												onClick={handleMinusCartClick}
-												className='py-[5px] slg:py-2 px-3 slg:px-4 flex items-center justify-center border border-r-0 border-black/50 rounded-l-3xl cursor-pointer hover:bg-primary hover:border-primary hover:text-white transition'
+												className='py-[5px] slg:py-2 px-3 slg:px-4 flex items-center justify-center border border-r-0 border-black/50 rounded-l-3xl cursor-pointer hover:bg-gray-700 hover:border-gray-700 hover:text-white transition'
 											>
 												<AiOutlineMinus className='text-xs slg:text-base' />
 											</div>
@@ -174,7 +174,7 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 												{cartItemCount}
 											</span>
 											<div
-												className='py-[5px] slg:py-2 px-3 slg:px-4 flex items-center justify-center border-[1px] rounded-r-3xl cursor-pointer hover:bg-primary hover:border-primary hover:text-white border-black/50 transition'
+												className='py-[5px] slg:py-2 px-3 slg:px-4 flex items-center justify-center border-[1px] rounded-r-3xl cursor-pointer hover:bg-gray-700 hover:border-gray-700 hover:text-white border-black/50 transition'
 												onClick={handlePlusCartClick}
 											>
 												<AiOutlinePlus className='text-xs slg:text-base' />
@@ -189,8 +189,8 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 												onClick={handleClick}
 												className={`${
 													cartItemCount === 0
-														? "bg-primary/80 cursor-not-allowed"
-														: "bg-primary hover:bg-primary cursor-pointer"
+														? "bg-gray-700/80 cursor-not-allowed"
+														: "bg-gray-700 hover:bg-gray-700 cursor-pointer"
 												} px-4 slg:px-8 py-3 flex items-center justify-center gap-1 rounded-lg leading-[1.5] transition w-fit`}
 											>
 												<h4 className='text-white capitalize font-semibold text-sm slg:text-base'>
@@ -199,7 +199,7 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 											</button>
 										)}
 										<div className='flex gap-2 flex-col sm:flex-row sm:items-center'>
-											<span className='font-outfit text-sm lg:text-base text-primary font-semibold text-primary'>
+											<span className='font-outfit text-sm lg:text-base text-gray-700 font-semibold text-gray-700'>
 												Share:
 											</span>
 											<div className='flex flex-wrap items-center gap-3 w-full'>
@@ -219,7 +219,7 @@ const ProductDisplaySection = ({ FormatedId }: ProductDisplaySectionProps) => {
 						</div>
 
 						<div className='bg-white mt-4 w-full px-2 slg:px-0'>
-							<div className='slg:ml-8 pb-3 pt-5 slg:pr-2 w-fit border border-primary border-t-0 border-r-0 border-l-0'>
+							<div className='slg:ml-8 pb-3 pt-5 slg:pr-2 w-fit border border-gray-700 border-t-0 border-r-0 border-l-0'>
 								<h4 className='text-secondary-200 uppercase text-xs sm:text-sm font-semibold leading-[1.5]'>
 									Description
 								</h4>

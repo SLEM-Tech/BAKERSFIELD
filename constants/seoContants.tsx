@@ -1,6 +1,6 @@
-const websiteUrl = "https://nest-wheel-auto.com";
+const websiteUrl = "https://bakersfield-five.vercel.app/";
 export const websiteName =
-  "John-and-sons-innovation-technology-services-company-limited";
+  "Bakersfield Elementary Services limited";
 export const SEODATA = {
 	defaultOGImage: ``,
 	default: {

@@ -46,8 +46,8 @@ const ProductTable = () => {
 		<div className='bg-white w-full px-3 sm:px-6 mt-3 pb-6 rounded-t-md'>
 			{items.length <= 0 ? (
 				<div className='flex w-full flex-col gap-1 sm:gap-2 items-center justify-center py-6 sm:py-12'>
-					<div className=' bg-primary/10 p-3 sm:p-4 rounded-full'>
-						<HiShoppingBag className='text-xl sm:text-3xl text-primary' />
+					<div className=' bg-gray-700/10 p-3 sm:p-4 rounded-full'>
+						<HiShoppingBag className='text-xl sm:text-3xl text-gray-700' />
 					</div>
 					<span className='font-semibold text-sm sm:text-lg text-center'>
 						Your cart is empty
@@ -103,12 +103,12 @@ const ProductTable = () => {
 											onClick={(e) => handlePlusClick(e, product)}
 										/>
 									</div>
-									<span className='w-1/6 text-sm sm:text-lg font-semibold text-primary'>
+									<span className='w-1/6 text-sm sm:text-lg font-semibold text-gray-700'>
 										<FormatMoney2 value={calculateSubtotal(product)} />
 									</span>
 									<span className='w-[8%]'>
 										<BsTrash
-											className='text-primary text-lg sm:text-2xl cursor-pointer hover:scale-105 transition'
+											className='text-gray-700 text-lg sm:text-2xl cursor-pointer hover:scale-105 transition'
 											onClick={(e) => handleRemoveClick(e, product.id)}
 										/>
 									</span>
@@ -120,7 +120,7 @@ const ProductTable = () => {
 						<button
 							type='button'
 							onClick={handleEmptyCartClick}
-							className='flex justify-center items-center py-2 sm:py-3 px-8 sm:px-14 text-sm sm:text-base border border-secondary-400 rounded-md hover:text-white hover:bg-primary transition hover:border-transparent'
+							className='flex justify-center items-center py-2 sm:py-3 px-8 sm:px-14 text-sm sm:text-base border border-secondary-400 rounded-md hover:text-white hover:bg-gray-700 transition hover:border-transparent'
 						>
 							Empty cart
 						</button>

@@ -1,4 +1,4 @@
-import { logoImage } from "@public/images";
+import logoImage from "@public/images/header/logo.png";
 import Picture from "@src/components/picture/Picture";
 import Link from "next/link";
 

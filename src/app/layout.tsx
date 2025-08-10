@@ -20,12 +20,14 @@ const montserrat = Montserrat({
 const { description, title } = SEODATA.default;
 export const metadata: Metadata = {
   title: {
-    absolute: "",
+    absolute: "Bakersfield Elementary Services Limited",
     default: "Bakersfield Elementary Services Limited",
     template: "",
   },
   description: description,
-  icons: SEODATA.defaultOGImage,
+  icons: {
+    icon: "/favicon.png", // or "/favicon.ico"
+  },
   openGraph: {
     images: [
       {
