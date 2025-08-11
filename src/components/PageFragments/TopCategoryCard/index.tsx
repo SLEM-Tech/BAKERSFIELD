@@ -26,7 +26,8 @@ export const TopCategoryCard = ({
       <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden">
         <Image
           src={imageSrc}
-          alt={category}
+          // alt={category}
+          alt=""
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100px, 128px"

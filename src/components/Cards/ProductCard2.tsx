@@ -115,7 +115,7 @@ const ProductCard2 = ({
       <h3 className="text-lg font-medium text-gray-900 line-clamp-1">
         {title}
       </h3>
-      <p className="text-sm text-gray-500 mb-2">{author || "Author"}</p>
+      {/* <p className="text-sm text-gray-500 mb-2">{author || "Author"}</p> */}
 
       {/* Price */}
       <p className="text-base font-medium text-black mb-4">
