@@ -81,9 +81,10 @@ const TermsOfUse = () => {
 
       <p className="mt-2 leading-[1.8] text-xs md:text-sm xl:text-base">
         <span className="font-medium">Intellectual Property:</span> Respect for
-        intellectual property rights is fundamental to our service. Report any
+        intellectual property rights is fundamental to our service. 
+        {/* Report any
         suspected copyright infringement to legal@bakersfield.com.ng for
-        investigation.
+        investigation. */}
       </p>
     </div>
   );
