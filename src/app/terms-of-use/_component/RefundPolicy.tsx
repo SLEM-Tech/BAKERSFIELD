@@ -95,7 +95,7 @@ const RefundPolicy = () => {
         </ul>
       </li>
 
-      <li>
+      {/* <li>
         <span className="font-medium">4. Refund Request Process</span>
         <p className="mt-1">To request a digital content refund:</p>
         <ul className="list-disc pl-5 mt-1 space-y-1">
@@ -105,7 +105,7 @@ const RefundPolicy = () => {
           <li>Website: www.bakersfield.com.ng</li>
           <li>Live Chat: 8 AM - 10 PM (WAT)</li>
         </ul>
-      </li>
+      </li> */}
 
       <li>
         <span className="font-medium">5. Refund Processing Timeline</span>

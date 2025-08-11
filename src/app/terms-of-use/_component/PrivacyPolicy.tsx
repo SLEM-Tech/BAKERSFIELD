@@ -87,8 +87,9 @@ const PrivacyPolicy = () => {
         You control your content preferences, viewing history visibility, and
         recommendation settings. Download history can be cleared, and content
         recommendations can be reset. You may request data deletion while
-        retaining access to purchased content. For content privacy concerns,
-        contact privacy@bakersfield.com.ng for personalized assistance.
+        retaining access to purchased content. 
+        {/* For content privacy concerns,
+        contact privacy@bakersfield.com.ng for personalized assistance. */}
       </p>
     </div>
   );

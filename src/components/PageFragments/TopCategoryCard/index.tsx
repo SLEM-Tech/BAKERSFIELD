@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
+import fallbackImage from "@public/images/discovery-section/image1.png"
 import React from "react";
 
 interface TopCategoryCardProps {
@@ -15,6 +16,8 @@ export const TopCategoryCard = ({
   imgPath,
   link,
 }: TopCategoryCardProps) => {
+
+  const imageSrc = imgPath && imgPath !== "" ? imgPath : fallbackImage;
   return (
     <Link
       href={`${"/category/" + link}`}
@@ -22,7 +25,7 @@ export const TopCategoryCard = ({
     >
       <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden">
         <Image
-          src={imgPath}
+          src={imageSrc}
           alt={category}
           fill
           className="object-cover"
