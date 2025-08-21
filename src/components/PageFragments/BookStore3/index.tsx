@@ -77,7 +77,7 @@ export const BookCategories = ({ className = "" }) => {
         </p>
       </div>
 
-      <div className="relative mt-10">
+      <div className="relative mt-10 flex items-center justify-center">
         <Carousel
           totalDataNumber={visibleCategories.length}
           maxScrollTotal={maxScrollTotal}

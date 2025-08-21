@@ -12,21 +12,23 @@ type Quotes = {
 const quoteList: Quotes[] = [
   {
     label:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      "Every purchase is more than money spent; it's trust earned and confidence built between customer and business.",
   },
   {
     label:
-      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+      "Customers don't just buy products; they invest in experiences that make life easier, better, and more meaningful.",
   },
   {
     label:
-      "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
+      "A purchase is not the end of a transaction; it's the beginning of a lasting relationship with the customer.",
   },
   {
     label:
-      "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+      "Behind every successful purchase is great service, genuine value, and a commitment to meet customer needs always.",
   },
 ];
+
+
 
 const Join: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

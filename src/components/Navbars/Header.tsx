@@ -458,7 +458,7 @@ const Header = () => {
             />
           </Link>
           <Link
-            href={"/"}
+            href={"/about"}
             className={`relative w-fit group py-2 group transition hover: text-base xl:text-xl capitalize text-black-600 font-semibold line-clamp-1 ${
               pathname === "/" && "text-gray-900"
             }`}

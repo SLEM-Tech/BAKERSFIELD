@@ -14,7 +14,7 @@ const Hero = () => {
         {/* Left Panel */}
         <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 flex flex-col justify-center px-10">
           <h1 className="text-3xl md:text-4xl font-serif font-medium text-black leading-snug">
-            Lorem ipsum dolor sit amet consectetur.
+            The home of digital Products
           </h1>
           <button className="mt-8 bg-black text-yellow-100 px-6 py-2 rounded-md w-fit text-sm hover:bg-gray-900 transition">
             Discover all
@@ -49,11 +49,10 @@ const Hero = () => {
           <FaRegComments size={40} color="#4b5563" />
           <div>
             <h4 className="font-semibold text-gray-800 mb-1">
-              Lorem ipsum dolor sit amet
+              Affordability at it&apos;s peak
             </h4>
             <p className="text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur. Sit placerat dignissim
-              placerat quis ac viverra.
+              Get maximum quality for the most affordable rates ever found.
             </p>
           </div>
         </div>
