@@ -6,40 +6,41 @@ import TestimonialCard from "../TestimonialCard";
 const testimonials = [
   {
     name: "Anna Smith",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
-    rating: 3,
+    text: "I was amazed at how smooth the purchase process was. Quick, simple, and the product quality exceeded my expectations.",
+    rating: 5,
     image: img,
     bgColor: "bg-[#F4F7D6]",
   },
   {
     name: "Sara Jacob",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
-    rating: 2,
+    text: "Customer service was excellent. They guided me through every step and ensured I got exactly what I needed.",
+    rating: 4,
     image: img,
     bgColor: "bg-[#EAEAFE]",
   },
   {
     name: "Lara Zoe",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
-    rating: 3,
+    text: "This was one of my best shopping experiences. The product arrived on time and the quality was fantastic.",
+    rating: 5,
     image: img,
     bgColor: "bg-[#FFF2E8]",
   },
   {
     name: "Franklin Jackson",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
-    rating: 1,
+    text: "At first I was unsure, but the service won me over. I’ll definitely be making more purchases here again.",
+    rating: 4,
     image: img,
     bgColor: "bg-[#FFF1EA]",
   },
   {
     name: "Jane Klien",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nisi id enim pulvinar suscipit. Praesent pretium orci non velit bibendum.",
-    rating: 4,
+    text: "Great value for money! I love how reliable the service is, and the team is always willing to help. Surely going to return for more deals.",
+    rating: 5,
     image: img,
     bgColor: "bg-[#F4F7D6]",
   },
 ];
+
 
 const Testimonial = () => {
   return (
