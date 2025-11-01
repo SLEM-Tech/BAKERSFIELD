@@ -254,12 +254,12 @@ const Header = () => {
 		<>
 			{/* Desktop */}
 
-			<header className='flex flex-col items-center justify-center h-25 lg:h-28 w-full z-50 fixed top-0 bg-white transition drop-shadow-md px-2 lg:px-0 pb-2 lg:pb-0'>
+			<header className='flex flex-col items-center justify-center h-25 lg:h-28 w-full z-50 fixed top-0 bg-white transition drop-shadow-md px-2 pt-3 lg:pt-0 lg:px-0 pb-2 lg:pb-0'>
 				{/* header row 2 */}
 				<div className='flex w-full items-center justify-between xs:gap-2 lg:gap-0 xs:mr-6 lg:mx-20 max-w-[1440px]'>
 					{/* header logo and hanburger menu */}
-					<div className='flex basis-1/4 items-center justify-start gap-0 lg:gap-4'>
-						<LogoImage className='w-[75px] ' />
+					<div className='flex basis-1/4 items-center justify-start gap-2 lg:gap-4'>
+						<LogoImage className='w-[50px] lg:w-[65px] ' />
 
 						<ImMenu
 							className='cursor-pointer'
@@ -366,9 +366,9 @@ const Header = () => {
 							) : (
 								<FiUser className='w-5 h-5' />
 							)}
-							<span className='text-sm font-medium'>
+							{/* <span className='text-sm font-medium'>
 								{firstName || "Login"}
-							</span>
+							</span> */}
 							{firstName && <SlArrowDown className='text-sm ml-1' />}
 						</div>
 
