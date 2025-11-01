@@ -341,6 +341,7 @@ const Header = () => {
 						</div>
 
 						{/* Login / Avatar */}
+
 						<div
 							className='flex items-center gap-1 text-[#181a17] cursor-pointer'
 							onClick={() => {
