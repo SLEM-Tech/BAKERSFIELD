@@ -56,8 +56,8 @@ const LoginForm = () => {
 				const accessToken = data?.data?.token;
 				const userData: UserType = data?.data?.user;
 				if (accessToken && userData?.roles[0] === "customer") {
-					Cookies.set(AUTH_TOKEN_KEY, accessToken);
-					Cookies.set(AUTH_EMAIL, userData?.email);
+					Cookies.set(AUTH_TOKEN_KEY, accessToken, { path: "/" });
+					Cookies.set(AUTH_EMAIL, userData?.email, { path: "/" });
 					dispatch(
 						authLogin({
 							token: accessToken,
