@@ -33,7 +33,8 @@ export default function setupAxios(axios: AxiosStatic, store: any) {
 			if (
 				auth?.token &&
 				(error.response?.status === 401 || error.response?.status === 403) &&
-				!originalRequest._retry
+				!originalRequest._retry &&
+				originalRequest.url?.includes(ecommmerceAPI)
 			) {
 				signOut();
 			}
