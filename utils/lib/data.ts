@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 
 export const AUTH_TOKEN_KEY = "NEST_WHEEL_AUTO_LOGIN_ACCESS";
 export const signOut = () => {
-	Cookies.remove(AUTH_TOKEN_KEY);
-	Cookies.remove(AUTH_EMAIL);
+	Cookies.remove(AUTH_TOKEN_KEY,{ path: "/" });
+	Cookies.remove(AUTH_EMAIL,{ path: "/" });
 	window.location.pathname = "/user/login";
 };
 export const Alliancepay_Checkout_Url =
