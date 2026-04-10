@@ -65,7 +65,7 @@ const LoginForm = () => {
 						}),
 					);
 
-					router.push("/");
+					router.push("/checkout");
 				} else {
 					toast.error("You can only be a customer to login to this platform.");
 				}
