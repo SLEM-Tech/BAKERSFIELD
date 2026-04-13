@@ -52,10 +52,8 @@ const LoginForm = () => {
 		},
 		{
 			onSuccess: async (data, variable: FormValues) => {
-				const { email, password } = variable;
 				const accessToken = data?.data?.token;
 				const userData: UserType = data?.data?.user;
-				router.push("/checkout");
 				if (accessToken && userData?.roles[0] === "customer") {
 					Cookies.set(AUTH_TOKEN_KEY, accessToken, { path: "/" });
 					Cookies.set(AUTH_EMAIL, userData?.email, { path: "/" });
@@ -65,8 +63,7 @@ const LoginForm = () => {
 							user: userData,
 						}),
 					);
-
-					
+					router.push("/checkout");
 				} else {
 					toast.error("You can only be a customer to login to this platform.");
 				}
